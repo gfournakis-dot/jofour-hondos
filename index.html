@@ -154,7 +154,7 @@
                     <span>Συνολικά Τεμάχια Stand:</span> 
                     <span id="total-qty-display">0 τεμ.</span>
                 </div>
-                <!-- ΝΕΟ ΔΙΟΡΘΩΜΕΝΟ FOOTER -->
+                <!-- FOOTER -->
                 <div class="thank-you-text" style="margin-top:10px; border-top:1px dashed #ccc; padding-top:8px;">
                     Με εκτίμηση,<br>
                     <span id="footer-promoter-name" style="font-weight:bold; color:var(--accent); text-transform:uppercase;"></span><br>
@@ -502,7 +502,8 @@
 
         const multipleRecipients = `${currentUser.email}, cosmeticskaterina@gmail.com, info@jofourgreece.gr`;
         
-        const dynamicSubjectTitle = `Νέα Παραγγελία από ${currentUser.name.toUpperCase()} - ${currentUser.store} (#${reportNumber})`;
+        // Ο ΤΙΤΛΟΣ ΠΟΥ ΘΑ ΕΜΦΑΝΙΖΕΤΑΙ ΣΤΑ ΕΙΣΕΡΧΟΜΕΝΑ (ΗΜΕΡΗΣΙΑ ΑΝΑΦΟΡΑ)
+        const dynamicSubjectTitle = `Ημερήσια Αναφορά - ${currentUser.name.toUpperCase()} - ${currentUser.store} (#${reportNumber})`;
 
         const templateParams = {
             customer_email: multipleRecipients,
