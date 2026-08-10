@@ -23,9 +23,9 @@
         .main-logo-container img { max-width: 200px; height: auto; }
         header h1 { margin: 5px 0 0 0; font-weight: 600; letter-spacing: 1.5px; font-size: 13px; text-transform: uppercase; color: var(--accent); }
 
-        /* ΟΘΟΝΗ LOGIN */
-        #login-screen { max-width: 380px; margin: 50px auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); border: 1px solid #eaeaea; text-align: center; }
-        #login-screen h2 { color: var(--accent); margin-bottom: 20px; font-size: 16px; text-transform: uppercase; }
+        /* ΦΟΡΜΑ ΠΡΩΤΗΣ ΕΓΓΡΑΦΗΣ / ΠΡΟΦΙΛ */
+        #profile-setup-screen { max-width: 420px; margin: 30px auto; background: white; padding: 25px; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); border: 1px solid #eaeaea; }
+        #profile-setup-screen h2 { color: var(--accent); margin-bottom: 15px; font-size: 15px; text-transform: uppercase; text-align: center; border-bottom: 2px solid var(--gold); padding-bottom: 8px; }
 
         /* ΚΥΡΙΩΣ ΕΦΑΡΜΟΓΗ */
         #main-app { display: none; }
@@ -69,12 +69,14 @@
 
         .form-input { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; font-size: 13px; }
         .form-input:focus { border-color: var(--accent); outline: none; }
+        select.form-input { background: white; cursor: pointer; font-weight: bold; color: #333; }
 
-        .section-subtitle { font-size: 12px; font-weight: bold; color: var(--accent); margin-bottom: 8px; display: block; text-transform: uppercase; border-bottom: 1px solid #f0f0f0; padding-bottom: 4px; }
+        .section-subtitle { font-size: 12px; font-weight: bold; color: var(--accent); margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase; border-bottom: 1px solid #f0f0f0; padding-bottom: 4px; }
+        .hours-badge { background: #27ae60; color: white; padding: 2px 6px; border-radius: 4px; font-size: 11px; font-weight: bold; text-transform: none; }
 
         .user-card-info { background: #fdfdfd; border: 1px solid #27ae60; border-radius: 6px; padding: 10px; margin-bottom: 15px; font-size: 12px; color: #333; line-height: 1.5; }
         .user-card-info strong { color: #27ae60; }
-        .logout-btn { background: none; border: none; color: red; text-decoration: underline; cursor: pointer; font-size: 11px; float: right; }
+        .edit-profile-btn { background: none; border: none; color: #27ae60; text-decoration: underline; cursor: pointer; font-size: 11px; float: right; font-weight: bold; }
 
         /* Στυλ για την Ημερήσια Δήλωση Εργασίας */
         .work-day-row { background: #fdfdfd; border: 1px solid #e0e0e0; border-radius: 6px; padding: 10px; margin-bottom: 10px; position: relative; }
@@ -100,15 +102,31 @@
     <h1>JO. FOUR / HONDOS CENTER PROMOTERS PORTAL</h1>
 </header>
 
-<!-- ΟΘΟΝΗ LOGIN -->
-<div id="login-screen">
-    <h2>🔑 Σύνδεση Προωθήτριας</h2>
-    <input type="text" id="login-username" placeholder="Όνομα Χρήστη (Username) *" class="form-input">
-    <input type="password" id="login-password" placeholder="Κωδικός Πρόσβασης (Password) *" class="form-input">
-    <button class="checkout-btn" style="margin-top:10px;" onclick="loginUser()">Συνδεση</button>
+<!-- ΦΟΡΜΑ ΠΡΩΤΗΣ ΕΓΓΡΑΦΗΣ / ΕΠΕΞΕΡΓΑΣΙΑΣ ΠΡΟΦΙΛ -->
+<div id="profile-setup-screen">
+    <h2>👤 Στοιχεία Προωθήτριας</h2>
+    <p style="font-size:12px; color:#666; margin-bottom:15px; text-align:center;">Συμπληρώστε τα στοιχεία σας <b>μία φορά</b>. Θα αποθηκευτούν αυτόματα στη συσκευή σας.</p>
+    
+    <input type="text" id="setup-name" placeholder="Ονοματεπώνυμο *" class="form-input">
+    <input type="text" id="setup-afm" placeholder="ΑΦΜ *" class="form-input">
+    <input type="text" id="setup-phone" placeholder="Τηλέφωνο Επικοινωνίας *" class="form-input">
+    <input type="email" id="setup-email" placeholder="Το Email σας *" class="form-input">
+    
+    <select id="setup-store" class="form-input">
+        <option value="">Επιλέξτε Κύριο Κατάστημα... *</option>
+        <option value="Hondos Center Περιστερίου">Hondos Center Περιστερίου</option>
+        <option value="Hondos Center Αιγάλεω">Hondos Center Αιγάλεω</option>
+        <option value="Hondos Center Νέας Ερυθραίας">Hondos Center Νέας Ερυθραίας</option>
+        <option value="Hondos Center Αμαλιάδας">Hondos Center Αμαλιάδας</option>
+        <option value="Hondos Center Καλαμάτας">Hondos Center Καλαμάτας</option>
+        <option value="Hondos Center Πύργου">Hondos Center Πύργου</option>
+        <option value="Hondos Center Λαμίας">Hondos Center Λαμίας</option>
+    </select>
+
+    <button class="checkout-btn" style="margin-top:10px;" onclick="saveProfile()">Αποθηκευση Στοιχειων</button>
 </div>
 
-<!-- ΚΥΡΙΩΣ ΕΦΑΡΜΟΓΗ (ΕΜΦΑΝΙΖΕΤΑΙ ΜΟΝΟ ΜΕΤΑ ΤΟ LOGIN) -->
+<!-- ΚΥΡΙΩΣ ΕΦΑΡΜΟΓΗ -->
 <div id="main-app">
     <div class="container">
         <div class="products-section" id="products-container"></div>
@@ -120,12 +138,15 @@
             <div id="cart-items"><p style="color: #aaa; font-style: italic;">Δεν έχουν επιλεγεί προϊόντα.</p></div>
             
             <div style="margin-top:20px; border-top: 1px solid #f0f0f0; padding-top: 15px;">
-                <!-- Ημερήσια Δήλωση Εργασίας -->
-                <span class="section-subtitle">📅 Ημερήσια Δήλωση Εργασίας (Εργόσημο)</span>
+                <span class="section-subtitle">
+                    <span>📅 Ημερήσια Δήλωση Εργασίας</span>
+                    <span id="total-hours-badge" class="hours-badge">Σύνολο: 0.0 ώρες</span>
+                </span>
                 <div id="work-days-container"></div>
                 <button type="button" class="add-day-btn" onclick="addWorkDay()">+ Προσθήκη Ημέρας Εργασίας</button>
 
-                <textarea id="order-notes" rows="2" placeholder="Σημειώσεις / Παρατηρήσεις Stand..." class="form-input" style="font-family: sans-serif; resize: none;"></textarea>
+                <span class="section-subtitle" style="margin-top:10px;">📝 ΣΗΜΕΙΩΣΕΙΣ / ΠΑΡΑΤΗΡΗΣΕΙΣ</span>
+                <textarea id="order-notes" rows="3" placeholder="Συμπληρώστε τις παρατηρήσεις σας (ή δήλωση εργασίας σε 2ο κατάστημα Hondos Center)..." class="form-input" style="font-family: sans-serif; resize: none;"></textarea>
             </div>
 
             <div class="totals" style="margin-top: 15px;">
@@ -154,60 +175,54 @@
         templateID: "template_3w98tzm"
     };
 
-    /* ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ ΠΡΟΩΘΗΤΡΙΩΝ (Ορίζεις Username, Password, Όνομα, ΑΦΜ, Τηλέφωνο, Email, Κατάστημα) */
-    const promotersDatabase = {
-        "promoter1": {
-            password: "123",
-            name: "ΜΑΡΙΑ ΠΑΠΑΔΟΠΟΥΛΟΥ",
-            afm: "123456789",
-            phone: "6911111111",
-            email: "maria@gmail.com",
-            store: "Hondos Center Περιστερίου"
-        },
-        "promoter2": {
-            password: "456",
-            name: "ΕΛΕΝΗ ΓΕΩΡΓΙΟΥ",
-            afm: "987654321",
-            phone: "6922222222",
-            email: "eleni@gmail.com",
-            store: "Hondos Center Αιγάλεω"
-        }
-    };
-
     let currentUser = null;
 
-    function checkSavedLogin() {
-        const savedUser = localStorage.getItem('logged_promoter');
-        if (savedUser && promotersDatabase[savedUser]) {
-            currentUser = promotersDatabase[savedUser];
-            showMainApp();
-        }
-    }
-
-    function loginUser() {
-        const u = document.getElementById("login-username").value.trim();
-        const p = document.getElementById("login-password").value.trim();
-
-        if (promotersDatabase[u] && promotersDatabase[u].password === p) {
-            currentUser = promotersDatabase[u];
-            localStorage.setItem('logged_promoter', u); // Αποθήκευση στο κινητό για να μην το ξαναζητήσει
+    function checkSavedProfile() {
+        const savedData = localStorage.getItem('hondos_promoter_profile');
+        if (savedData) {
+            currentUser = JSON.parse(savedData);
             showMainApp();
         } else {
-            alert("Λάθος Όνομα Χρήστη ή Κωδικός!");
+            document.getElementById("profile-setup-screen").style.display = "block";
+            document.getElementById("main-app").style.display = "none";
         }
     }
 
-    function logoutUser() {
-        localStorage.removeItem('logged_promoter');
-        location.reload();
+    function saveProfile() {
+        const name = document.getElementById("setup-name").value.trim();
+        const afm = document.getElementById("setup-afm").value.trim();
+        const phone = document.getElementById("setup-phone").value.trim();
+        const email = document.getElementById("setup-email").value.trim();
+        const store = document.getElementById("setup-store").value;
+
+        if (!name) { alert("Παρακαλώ συμπληρώστε Ονοματεπώνυμο!"); return; }
+        if (!afm) { alert("Παρακαλώ συμπληρώστε ΑΦΜ!"); return; }
+        if (!phone) { alert("Παρακαλώ συμπληρώστε Τηλέφωνο!"); return; }
+        if (!email) { alert("Παρακαλώ συμπληρώστε Email!"); return; }
+        if (!store) { alert("Παρακαλώ επιλέξτε Κατάστημα!"); return; }
+
+        currentUser = { name, afm, phone, email, store };
+        localStorage.setItem('hondos_promoter_profile', JSON.stringify(currentUser));
+        showMainApp();
+    }
+
+    function editProfile() {
+        document.getElementById("setup-name").value = currentUser.name;
+        document.getElementById("setup-afm").value = currentUser.afm;
+        document.getElementById("setup-phone").value = currentUser.phone;
+        document.getElementById("setup-email").value = currentUser.email;
+        document.getElementById("setup-store").value = currentUser.store;
+
+        document.getElementById("profile-setup-screen").style.display = "block";
+        document.getElementById("main-app").style.display = "none";
     }
 
     function showMainApp() {
-        document.getElementById("login-screen").style.display = "none";
+        document.getElementById("profile-setup-screen").style.display = "none";
         document.getElementById("main-app").style.display = "block";
         
         document.getElementById("logged-user-box").innerHTML = `
-            <button class="logout-btn" onclick="logoutUser()">Αποσύνδεση</button>
+            <button class="edit-profile-btn" onclick="editProfile()">✏️ Επεξεργασία</button>
             👤 <strong>${currentUser.name}</strong><br>
             🆔 ΑΦΜ: <b>${currentUser.afm}</b> | 📞 <b>${currentUser.phone}</b><br>
             🏢 <b>${currentUser.store}</b>
@@ -305,17 +320,45 @@
         div.innerHTML = `
             ${dayCount > 1 ? `<button type="button" class="remove-day-btn" onclick="removeWorkDay(${dayCount})">✕</button>` : ''}
             <div class="work-day-flex">
-                <input type="date" id="date-${dayCount}" class="form-input">
-                <select id="start-${dayCount}" class="form-input">${getTimeOptions()}</select>
-                <select id="end-${dayCount}" class="form-input">${getTimeOptions()}</select>
+                <input type="date" id="date-${dayCount}" class="form-input" onchange="calculateTotalHours()">
+                <select id="start-${dayCount}" class="form-input" onchange="calculateTotalHours()">${getTimeOptions()}</select>
+                <select id="end-${dayCount}" class="form-input" onchange="calculateTotalHours()">${getTimeOptions()}</select>
             </div>
         `;
         container.appendChild(div);
+        calculateTotalHours();
     }
 
     function removeWorkDay(id) {
         const row = document.getElementById(`work-day-${id}`);
         if (row) row.remove();
+        calculateTotalHours();
+    }
+
+    function calculateTotalHours() {
+        let grandTotalHours = 0;
+        const dayRows = document.querySelectorAll(".work-day-row");
+
+        dayRows.forEach(row => {
+            const startVal = row.querySelector('select:nth-of-type(1)').value;
+            const endVal = row.querySelector('select:nth-of-type(2)').value;
+
+            if (startVal && endVal) {
+                const [startH, startM] = startVal.split(':').map(Number);
+                const [endH, endM] = endVal.split(':').map(Number);
+
+                const startTimeInMinutes = startH * 60 + startM;
+                const endTimeInMinutes = endH * 60 + endM;
+
+                if (endTimeInMinutes > startTimeInMinutes) {
+                    const diffMinutes = endTimeInMinutes - startTimeInMinutes;
+                    grandTotalHours += diffMinutes / 60;
+                }
+            }
+        });
+
+        document.getElementById("total-hours-badge").innerText = "Σύνολο: " + grandTotalHours.toFixed(1) + " ώρες";
+        return grandTotalHours;
     }
 
     function renderProducts() {
@@ -397,13 +440,15 @@
 
     function sendReport() {
         if (cart.length === 0) { alert("Παρακαλώ επιλέξτε τα προϊόντα που πουλήθηκαν/χρειάζονται αναπλήρωση!"); return; }
-        if (!currentUser) { alert("Σφάλμα σύνδεσης!"); return; }
+        if (!currentUser) { alert("Σφάλμα προφίλ!"); return; }
 
         let workDaysText = "";
         const dayRows = document.querySelectorAll(".work-day-row");
         if (dayRows.length === 0) { alert("Παρακαλώ προσθέστε τουλάχιστον μία Ημέρα Εργασίας!"); return; }
 
         let validDays = 0;
+        let totalShiftHours = 0;
+
         dayRows.forEach(row => {
             const dateVal = row.querySelector('input[type="date"]').value;
             const startVal = row.querySelector('select:nth-of-type(1)').value;
@@ -415,19 +460,32 @@
                 const dayName = daysGreek[d.getDay()];
                 const formattedDate = dateVal.split('-').reverse().join('/');
                 
-                workDaysText += `• ${dayName} ${formattedDate}: ${startVal} έως ${endVal}\n`;
-                validDays++;
+                const [startH, startM] = startVal.split(':').map(Number);
+                const [endH, endM] = endVal.split(':').map(Number);
+                const shiftDuration = ((endH * 60 + endM) - (startH * 60 + startM)) / 60;
+
+                if (shiftDuration > 0) {
+                    totalShiftHours += shiftDuration;
+                    workDaysText += `• ${dayName} ${formattedDate}: ${startVal} έως ${endVal} (${shiftDuration.toFixed(1)} ώρες)\n`;
+                    validDays++;
+                }
             }
         });
 
         if (validDays === 0) { alert("Παρακαλώ συμπληρώστε σωστά την Ημερομηνία και τις Ώρες Εργασίας!"); return; }
+
+        const confirmMessage = "⚠️ ΕΛΕΓΧΟΣ ΟΡΘΟΤΗΤΑΣ ΑΝΑΦΟΡΑΣ\n\nΠαρακαλώ ελέγξτε προσεκτικά αν οι ώρες εργασίας και τα τεμάχια των προϊόντων είναι σωστά.\n\nΕλέγξτε την ορθότητα και στείλτε την ημερήσια αναφορά.\n\nΕίστε σίγουροι ότι θέλετε να προχωρήσετε στην αποστολή;";
+        
+        if (!confirm(confirmMessage)) {
+            return;
+        }
 
         const reportNumber = getNextReportNumber();
         const inputNotes = document.getElementById("order-notes").value.trim() || "Δεν υπάρχουν σημειώσεις.";
 
         const orderBtn = document.getElementById("submit-order-btn");
         orderBtn.disabled = true;
-        orderBtn.innerText = "ΑΠΟΣΤΟΛΗ ΑΝΑΦΟΡΑΣ...";
+        orderBtn.innerText = "ΑΠΟΣТОΛΗ ΑΝΑΦΟΡΑΣ...";
 
         let cleanCartItems = "";
         let totalQtySum = 0;
@@ -436,13 +494,16 @@
             totalQtySum += item.qty;
         });
 
-        // ΑΥΤΟΜΑΤΗ ΣΥΜΠΛΗΡΩΣΗ ΤΩΝ ΣΤΟΙΧΕΙΩΝ ΤΗΣ ΠΡΟΩΘΗΤΡΙΑΣ ΣΤΟ EMAIL
-        const combinedNotes = `=======================================\n  JO. FOUR / HONDOS CENTER PROMOTERS PORTAL\n  ΑΝΑΦΟΡΑ ΠΩΛΗΤΡΙΑΣ & RESTOCK #${reportNumber}\n=======================================\n\n👤 ΣΤΟΙΧΕΙΑ ΠΡΟΩΘΗΤΡΙΑΣ:\n------------------------\nΟΝΟΜΑΤΕΠΩΝΥΜΟ : ${currentUser.name}\nΑΦΜ           : ${currentUser.afm}\nΤΗΛΕΦΩΝΟ      : ${currentUser.phone}\nEMAIL         : ${currentUser.email}\nΚΑΤΑΣΤΗΜΑ     : ${currentUser.store}\n\n📅 ΔΗΛΩΣΗ ΕΡΓΟΣΗΜΟΥ (ΗΜΕΡΕΣ & ΩΡΕΣ):\n------------------------------------\n${workDaysText}\n📝 ΠΑΡΑΤΗΡΗΣΕΙΣ STAND:\n----------------------\n${inputNotes}`;
+        const combinedNotes = `=======================================\n  JO. FOUR / HONDOS CENTER PROMOTERS PORTAL\n  ΗΜΕΡΗΣΙΑ ΑΝΑΦΟΡΑ & RESTOCK #${reportNumber}\n=======================================\n\n👤 ΣТОΙΧΕΙΑ ΠΡΟΩΘΗΤΡΙΑΣ:\n------------------------\nΟΝΟΜΑΤΕΠΩΝΥΜΟ : ${currentUser.name.toUpperCase()}\nΑΦΜ           : ${currentUser.afm}\nΤΗΛΕΦΩΝΟ      : ${currentUser.phone}\nEMAIL         : ${currentUser.email}\nΚΥΡΙΟ ΚΑΤΑΣΤΗΜΑ: ${currentUser.store}\n\n📅 ΔΗΛΩΣΗ ΕΡΓΟΣΗΜΟΥ (ΗΜΕΡΕΣ & ΩΡΕΣ):\n------------------------------------\n${workDaysText}\n⏱️ ΣΥΝΟΛΟ ΩΡΩΝ ΕΡΓΑΣΙΑΣ: ${totalShiftHours.toFixed(1)} ώρες\n\n📝 ΣΗΜΕΙΩΣΕΙΣ / ΠΑΡΑΤΗΡΗΣΕΙΣ:\n------------------------------\n${inputNotes}`;
 
         const multipleRecipients = `${currentUser.email}, cosmeticskaterina@gmail.com, info@jofourgreece.gr`;
+        
+        // Ο ΤΙΤΛΟΣ ΠΟΥ ΘΑ ΕΜΦΑΝΙΖΕΤΑΙ ΣΤΑ ΕΙΣΕΡΧΟΜΕΝΑ ΣΟΥ
+        const dynamicSubjectTitle = `Νέα Παραγγελία από ${currentUser.name.toUpperCase()} - ${currentUser.store} (#${reportNumber})`;
 
         const templateParams = {
-            customer_email: multipleRecipients, 
+            customer_email: multipleRecipients,
+            subject_title: dynamicSubjectTitle, 
             order_notes: combinedNotes, 
             html_cart_items: cleanCartItems, 
             products_subtotal: totalQtySum + " τεμάχια",
@@ -454,7 +515,7 @@
 
         emailjs.send(EMAILJS_CONFIG.serviceID, EMAILJS_CONFIG.templateID, templateParams)
             .then(function(response) {
-                alert("Η αναφορά #" + reportNumber + " στάλθηκε με επιτυχία!");
+                alert("Η αναφορά #" + reportNumber + " στάλθηκε με επιτυχία!\nΣυνολικές Ώρες: " + totalShiftHours.toFixed(1) + " ώρες");
                 
                 incrementReportNumber(); 
                 updateReportDisplay();
@@ -474,8 +535,7 @@
             });
     }
 
-    // Αρχικοποίηση
-    checkSavedLogin();
+    checkSavedProfile();
     updateReportDisplay();
     addWorkDay();
     renderProducts();
