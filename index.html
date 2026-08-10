@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JO. FOUR / HONDOS CENTER PROMOTERS PORTAL</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        :root {
+            --primary-bg: #f9f9f9;      
+            --header-bg: #ffffff;       
+            --accent: #a6192e;         
+            --gold: #bda061;   
+            --text-main: #333333;
+            --btn-main: #1a1a1a;        
+            --btn-tester: #bda061;      
+        }
+
+        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: var(--primary-bg); margin: 0; padding: 0; color: var(--text-main); }
+        
+        header { background-color: var(--header-bg); padding: 15px 20px; text-align: center; border-bottom: 5px solid var(--gold); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .main-logo-container { display: flex; justify-content: center; margin-bottom: 5px; }
+        .main-logo-container img { max-width: 200px; height: auto; }
+        header h1 { margin: 5px 0 0 0; font-weight: 600; letter-spacing: 1.5px; font-size: 13px; text-transform: uppercase; color: var(--accent); }
+
+        /* ΟΘΟΝΗ LOGIN */
+        #login-screen { max-width: 380px; margin: 50px auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); border: 1px solid #eaeaea; text-align: center; }
+        #login-screen h2 { color: var(--accent); margin-bottom: 20px; font-size: 16px; text-transform: uppercase; }
+
+        /* ΚΥΡΙΩΣ ΕΦΑΡΜΟΓΗ */
+        #main-app { display: none; }
+        .container { display: flex; flex-wrap: wrap; padding: 20px; max-width: 1200px; margin: 0 auto; gap: 25px; }
+        .products-section { flex: 2; min-width: 300px; }
+        .cart-section { flex: 1; min-width: 320px; background: white; padding: 25px; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.08); align-self: flex-start; position: sticky; top: 10px; border: 1px solid #eaeaea; }
+        
+        .category-title { border-bottom: 3px solid var(--gold); padding-bottom: 5px; margin-top: 25px; font-weight: bold; text-transform: uppercase; font-size: 15px; letter-spacing: 1px; color: var(--accent); }
+        
+        .product-card { background: white; padding: 12px; margin-bottom: 12px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; border: 1px solid #f0f0f0; position: relative; }
+        .product-card:hover { border-color: var(--accent); }
+
+        .image-container { position: relative; width: 75px; height: 75px; z-index: 10; }
+        .product-image { 
+            width: 75px; height: 75px; object-fit: cover; border-radius: 8px; border: 1px solid #eaeaea; 
+            background-color: #ffffff; transition: transform 0.3s ease; cursor: zoom-in; display: block;
+        }
+        .image-container:hover .product-image { 
+            transform: scale(3.5); 
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            z-index: 9999;
+            position: relative;
+        }
+        
+        .product-info { flex: 1; min-width: 180px; }
+        .product-info h4 { margin: 0; font-size: 15px; color: #2c302e; font-weight: bold; }
+        
+        .actions { display: flex; gap: 8px; align-items: center; }
+        .qty-input { width: 45px; padding: 6px; border: 1px solid #ccc; border-radius: 4px; text-align: center; font-weight: bold; font-size: 14px;}
+        
+        .tester-btn { background-color: var(--btn-tester); color: white; border: none; padding: 8px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; transition: all 0.3s ease; }
+        .add-btn { background-color: var(--btn-main); color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; }
+        
+        .totals { margin-top: 15px; background: #fafafa; padding: 12px; border-radius: 6px; border: 1px solid #eaeaea; }
+        
+        .thank-you-text { font-size: 11.5px; color: #444; margin-top: 8px; text-align: center; line-height: 1.6; }
+        .thank-you-text strong { color: var(--accent); }
+
+        .checkout-btn { width: 100%; background-color: var(--accent); color: white; padding: 16px; border: none; border-radius: 6px; font-size: 15px; font-weight: bold; cursor: pointer; margin-top: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        .checkout-btn:disabled { background-color: #cccccc; cursor: not-allowed; }
+
+        .form-input { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; font-size: 13px; }
+        .form-input:focus { border-color: var(--accent); outline: none; }
+
+        .section-subtitle { font-size: 12px; font-weight: bold; color: var(--accent); margin-bottom: 8px; display: block; text-transform: uppercase; border-bottom: 1px solid #f0f0f0; padding-bottom: 4px; }
+
+        .user-card-info { background: #fdfdfd; border: 1px solid #27ae60; border-radius: 6px; padding: 10px; margin-bottom: 15px; font-size: 12px; color: #333; line-height: 1.5; }
+        .user-card-info strong { color: #27ae60; }
+        .logout-btn { background: none; border: none; color: red; text-decoration: underline; cursor: pointer; font-size: 11px; float: right; }
+
+        /* Στυλ για την Ημερήσια Δήλωση Εργασίας */
+        .work-day-row { background: #fdfdfd; border: 1px solid #e0e0e0; border-radius: 6px; padding: 10px; margin-bottom: 10px; position: relative; }
+        .work-day-flex { display: flex; gap: 8px; flex-wrap: wrap; }
+        .work-day-flex input, .work-day-flex select { flex: 1; min-width: 90px; margin-bottom: 0; }
+        .add-day-btn { background: #27ae60; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; width: 100%; margin-bottom: 15px; }
+        .remove-day-btn { background: none; border: none; color: red; font-weight: bold; cursor: pointer; position: absolute; right: 5px; top: 5px; }
+
+        .report-badge { background: var(--accent); color: white; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; float: right; }
+
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .image-container:hover .product-image { transform: scale(2.2); }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="main-logo-container">
+        <img src="https://jofourgreece.gr/cdn/shop/files/Copy_of_Jo.Four_Logo_Logo_1.png" alt="Jo. Four Greece">
+    </div>
+    <h1>JO. FOUR / HONDOS CENTER PROMOTERS PORTAL</h1>
+</header>
+
+<!-- ΟΘΟΝΗ LOGIN -->
+<div id="login-screen">
+    <h2>🔑 Σύνδεση Προωθήτριας</h2>
+    <input type="text" id="login-username" placeholder="Όνομα Χρήστη (Username) *" class="form-input">
+    <input type="password" id="login-password" placeholder="Κωδικός Πρόσβασης (Password) *" class="form-input">
+    <button class="checkout-btn" style="margin-top:10px;" onclick="loginUser()">Συνδεση</button>
+</div>
+
+<!-- ΚΥΡΙΩΣ ΕΦΑΡΜΟΓΗ (ΕΜΦΑΝΙΖΕΤΑΙ ΜΟΝΟ ΜΕΤΑ ΤΟ LOGIN) -->
+<div id="main-app">
+    <div class="container">
+        <div class="products-section" id="products-container"></div>
+        <div class="cart-section">
+            <h3>📊 Δήλωση Πωλήσεων & Stand <span id="report-num-display" class="report-badge"></span></h3>
+            
+            <div id="logged-user-box" class="user-card-info"></div>
+
+            <div id="cart-items"><p style="color: #aaa; font-style: italic;">Δεν έχουν επιλεγεί προϊόντα.</p></div>
+            
+            <div style="margin-top:20px; border-top: 1px solid #f0f0f0; padding-top: 15px;">
+                <!-- Ημερήσια Δήλωση Εργασίας -->
+                <span class="section-subtitle">📅 Ημερήσια Δήλωση Εργασίας (Εργόσημο)</span>
+                <div id="work-days-container"></div>
+                <button type="button" class="add-day-btn" onclick="addWorkDay()">+ Προσθήκη Ημέρας Εργασίας</button>
+
+                <textarea id="order-notes" rows="2" placeholder="Σημειώσεις / Παρατηρήσεις Stand..." class="form-input" style="font-family: sans-serif; resize: none;"></textarea>
+            </div>
+
+            <div class="totals" style="margin-top: 15px;">
+                <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:14px; color:var(--accent);">
+                    <span>Συνολικά Τεμάχια Stand:</span> 
+                    <span id="total-qty-display">0 τεμ.</span>
+                </div>
+                <div class="thank-you-text" style="margin-top:10px; border-top:1px dashed #ccc; padding-top:8px;">
+                    <strong>JO. FOUR GREECE - FOURNAKIS GROUP</strong><br>
+                    📱 Υπεύθυνη: <strong>6933292978</strong> (Κατερίνα)<br>
+                    📞 Γραφείο: <strong>2121212560</strong>
+                </div>
+            </div>
+            <button id="submit-order-btn" class="checkout-btn" onclick="sendReport()">Αποστολη Αναφορας & Παραγγελιας</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function(){
+        emailjs.init("ANPdfKjEtWBL6kCRY");
+    })();
+
+    const EMAILJS_CONFIG = {
+        serviceID: "service_2l181os",
+        templateID: "template_3w98tzm"
+    };
+
+    /* ΒΑΣΗ ΔΕΔΟΜΕΝΩΝ ΠΡΟΩΘΗΤΡΙΩΝ (Ορίζεις Username, Password, Όνομα, ΑΦΜ, Τηλέφωνο, Email, Κατάστημα) */
+    const promotersDatabase = {
+        "promoter1": {
+            password: "123",
+            name: "ΜΑΡΙΑ ΠΑΠΑΔΟΠΟΥΛΟΥ",
+            afm: "123456789",
+            phone: "6911111111",
+            email: "maria@gmail.com",
+            store: "Hondos Center Περιστερίου"
+        },
+        "promoter2": {
+            password: "456",
+            name: "ΕΛΕΝΗ ΓΕΩΡΓΙΟΥ",
+            afm: "987654321",
+            phone: "6922222222",
+            email: "eleni@gmail.com",
+            store: "Hondos Center Αιγάλεω"
+        }
+    };
+
+    let currentUser = null;
+
+    function checkSavedLogin() {
+        const savedUser = localStorage.getItem('logged_promoter');
+        if (savedUser && promotersDatabase[savedUser]) {
+            currentUser = promotersDatabase[savedUser];
+            showMainApp();
+        }
+    }
+
+    function loginUser() {
+        const u = document.getElementById("login-username").value.trim();
+        const p = document.getElementById("login-password").value.trim();
+
+        if (promotersDatabase[u] && promotersDatabase[u].password === p) {
+            currentUser = promotersDatabase[u];
+            localStorage.setItem('logged_promoter', u); // Αποθήκευση στο κινητό για να μην το ξαναζητήσει
+            showMainApp();
+        } else {
+            alert("Λάθος Όνομα Χρήστη ή Κωδικός!");
+        }
+    }
+
+    function logoutUser() {
+        localStorage.removeItem('logged_promoter');
+        location.reload();
+    }
+
+    function showMainApp() {
+        document.getElementById("login-screen").style.display = "none";
+        document.getElementById("main-app").style.display = "block";
+        
+        document.getElementById("logged-user-box").innerHTML = `
+            <button class="logout-btn" onclick="logoutUser()">Αποσύνδεση</button>
+            👤 <strong>${currentUser.name}</strong><br>
+            🆔 ΑΦΜ: <b>${currentUser.afm}</b> | 📞 <b>${currentUser.phone}</b><br>
+            🏢 <b>${currentUser.store}</b>
+        `;
+    }
+
+    function getNextReportNumber() {
+        let currentNum = localStorage.getItem('hondos_report_number');
+        if (!currentNum) { currentNum = 1001; } else { currentNum = parseInt(currentNum); }
+        return currentNum;
+    }
+
+    function incrementReportNumber() {
+        let currentNum = getNextReportNumber();
+        localStorage.setItem('hondos_report_number', currentNum + 1);
+    }
+
+    function updateReportDisplay() {
+        document.getElementById("report-num-display").innerText = "Αρ. #" + getNextReportNumber();
+    }
+
+    const inventory = [
+        /* ΑΡΩΜΑΤΑ 50ml (ANGEL) */
+        { cat: "ΑΡΩΜΑΤΑ (50ml) - ANGEL", id: "a1", name: "Angel No 000 Perfume", img: "images/angel000.jpg" },
+        { cat: "ΑΡΩΜΑΤΑ (50ml) - ANGEL", id: "a2", name: "Angel No 222 Perfume", img: "images/angel222.jpg" },
+        { cat: "ΑΡΩΜΑΤΑ (50ml) - ANGEL", id: "a3", name: "Angel No 333 Perfume", img: "images/angel333.jpg" },
+        { cat: "ΑΡΩΜΑΤΑ (50ml) - ANGEL", id: "a4", name: "Angel No 555 Perfume", img: "images/angel555.jpg" },
+        { cat: "ΑΡΩΜΑΤΑ (50ml) - ANGEL", id: "a5", name: "Angel No 777 Perfume", img: "images/angel777.jpg" },
+        { cat: "ΑΡΩΜΑΤΑ (50ml) - ANGEL", id: "a6", name: "Angel No 888 Perfume", img: "images/angel888.jpg" },
+
+        /* ΑΡΩΜΑΤΑ 50ml (ESSENTIAL) */
+        { cat: "ΑΡΩΜΑΤΑ (50ml) - ESSENTIAL", id: "e1", name: "Sweet Diva Perfume", img: "images/diva.jpg" },
+        { cat: "ΑΡΩΜΑΤΑ (50ml) - ESSENTIAL", id: "e2", name: "White Luxe Perfume", img: "images/white_luxe.jpg" },
+        { cat: "ΑΡΩΜΑΤΑ (50ml) - ESSENTIAL", id: "e3", name: "Golden Aura Perfume", img: "images/golden_aura.jpg" },
+        { cat: "ΑΡΩΜΑΤΑ (50ml) - ESSENTIAL", id: "e4", name: "Gelato Dream Perfume", img: "images/gelato.jpg" },
+        { cat: "ΑΡΩΜΑΤΑ (50ml) - ESSENTIAL", id: "e5", name: "Crystal Breeze Perfume", img: "images/crystal.jpg" },
+        { cat: "ΑΡΩΜΑΤΑ (50ml) - ESSENTIAL", id: "e6", name: "Brazilian Sol Perfume", img: "images/brazilian.jpg" },
+        { cat: "ΑΡΩΜΑΤΑ (50ml) - ESSENTIAL", id: "e7", name: "Velvet Cream Perfume", img: "images/velvet.jpg" },
+
+        /* ΑΝΔΡΙΚΑ ΑΡΩΜΑΤΑ */
+        { cat: "ΑΝΔΡΙΚΑ ΑΡΩΜΑΤΑ", id: "m1", name: "Ocean Force Perfume", img: "images/ocean_force.jpg" },
+        { cat: "ΑΝΔΡΙΚΑ ΑΡΩΜΑΤΑ", id: "m2", name: "Dark Horizon Perfume", img: "images/dark_horizon.jpg" },
+        { cat: "ΑΝΔΡΙΚΑ ΑΡΩΜΑΤΑ", id: "m3", name: "Amber Royal Perfume", img: "images/amber_royal.jpg" },
+
+        /* BODY LOTIONS (250ml) */
+        { cat: "BODY LOTIONS (250ml)", id: "l1", name: "Caramel Pop Lotion", img: "images/CARAMEL_POP.jpg" },
+        { cat: "BODY LOTIONS (250ml)", id: "l2", name: "Juicy Nectar Lotion", img: "images/JUICY_NECTAR.jpg" },
+        { cat: "BODY LOTIONS (250ml)", id: "l3", name: "Rose Delight Lotion", img: "images/ROSE_DELIGHT.jpg" },
+        { cat: "BODY LOTIONS (250ml)", id: "l4", name: "Sweet Jasmine Lotion", img: "images/SWEET_JASMINE.jpg" },
+        { cat: "BODY LOTIONS (250ml)", id: "l5", name: "Velvet Cream Lotion", img: "images/VELVET_CREAM.jpg" },
+        { cat: "BODY LOTIONS (250ml)", id: "l6", name: "White Cashmere Lotion", img: "images/WHITE_CASHMERE.jpg" },
+        { cat: "BODY LOTIONS (250ml)", id: "l7", name: "Angel No 000 Lotion", img: "images/lotion000.jpg" },
+        { cat: "BODY LOTIONS (250ml)", id: "l8", name: "Angel No 333 Lotion", img: "images/lotion333.jpg" },
+        { cat: "BODY LOTIONS (250ml)", id: "l9", name: "Angel No 777 Lotion", img: "images/lotion777.jpg" },
+
+        /* HAIR & BODY MISTS (200ml) */
+        { cat: "HAIR & BODY MISTS", id: "mist1", name: "Brazilian Sol Mist", img: "images/mist_brazilian.png" },
+        { cat: "HAIR & BODY MISTS", id: "mist2", name: "Crystal Breeze Mist", img: "images/mist_crystal.jpg" },
+        { cat: "HAIR & BODY MISTS", id: "mist3", name: "Gelato Dream Mist", img: "images/mist_gelato.jpg" },
+        { cat: "HAIR & BODY MISTS", id: "mist4", name: "Golden Aura Mist", img: "images/mist_golden.jpg" },
+        { cat: "HAIR & BODY MISTS", id: "mist5", name: "Ocean Force Mist", img: "images/mist_ocean.jpg" },
+        { cat: "HAIR & BODY MISTS", id: "mist6", name: "Sweet Diva Mist", img: "images/mist_diva.jpg" },
+        { cat: "HAIR & BODY MISTS", id: "mist7", name: "Vanilla 222 Mist", img: "images/mist_vanilla.jpg" },
+        { cat: "HAIR & BODY MISTS", id: "mist8", name: "Velvet Cream Mist", img: "images/mist_velvet.jpg" },
+        { cat: "HAIR & BODY MISTS", id: "mist9", name: "White Luxe Mist", img: "images/mist_white.jpg" },
+
+        /* GIFT SETS */
+        { cat: "GIFT SETS (ΣΕΤ ΔΩΡΩΝ)", id: "gs1", name: "Set - Ocean Force", img: "images/set_ocean.jpg" },
+        { cat: "GIFT SETS (ΣΕΤ ΔΩΡΩΝ)", id: "gs2", name: "Set - Sweet Diva", img: "images/set_diva.jpg" },
+        { cat: "GIFT SETS (ΣΕΤ ΔΩΡΩΝ)", id: "gs3", name: "Set - Crystal Breeze", img: "images/set_crystal.jpg" },
+        { cat: "GIFT SETS (ΣΕΤ ΔΩΡΩΝ)", id: "gs4", name: "Set - Gelato Dream", img: "images/set_gelato.jpg" },
+        { cat: "GIFT SETS (ΣΕΤ ΔΩΡΩΝ)", id: "gs5", name: "Set - Golden Aura", img: "images/set_golden.jpg" },
+        { cat: "GIFT SETS (ΣΕΤ ΔΩΡΩΝ)", id: "gs6", name: "Set - Vanilla 222", img: "images/set_vanilla.jpg" }
+    ];
+
+    let cart = [];
+    let dayCount = 0;
+
+    function getTimeOptions() {
+        let options = '<option value="">Ώρα...</option>';
+        for (let h = 8; h <= 22; h++) {
+            let hourStr = h < 10 ? '0' + h : h;
+            options += `<option value="${hourStr}:00">${hourStr}:00</option>`;
+            if (h < 22) options += `<option value="${hourStr}:30">${hourStr}:30</option>`;
+        }
+        return options;
+    }
+
+    function addWorkDay() {
+        dayCount++;
+        const container = document.getElementById("work-days-container");
+        const div = document.createElement("div");
+        div.className = "work-day-row";
+        div.id = `work-day-${dayCount}`;
+        div.innerHTML = `
+            ${dayCount > 1 ? `<button type="button" class="remove-day-btn" onclick="removeWorkDay(${dayCount})">✕</button>` : ''}
+            <div class="work-day-flex">
+                <input type="date" id="date-${dayCount}" class="form-input">
+                <select id="start-${dayCount}" class="form-input">${getTimeOptions()}</select>
+                <select id="end-${dayCount}" class="form-input">${getTimeOptions()}</select>
+            </div>
+        `;
+        container.appendChild(div);
+    }
+
+    function removeWorkDay(id) {
+        const row = document.getElementById(`work-day-${id}`);
+        if (row) row.remove();
+    }
+
+    function renderProducts() {
+        const container = document.getElementById("products-container");
+        container.innerHTML = "";
+        const grouped = inventory.reduce((acc, curr) => {
+            if (!acc[curr.cat]) acc[curr.cat] = [];
+            acc[curr.cat].push(curr);
+            return acc;
+        }, {});
+
+        for (const [category, items] of Object.entries(grouped)) {
+            container.innerHTML += `<h2 class="category-title">${category}</h2>`;
+            items.forEach((item) => {
+                container.innerHTML += `
+                    <div class="product-card">
+                        <div class="image-container">
+                            <img src="${item.img}" alt="${item.name}" class="product-image" onerror="this.src='https://placehold.co/75?text=Jo.Four'">
+                        </div>
+                        <div class="product-info">
+                            <h4>${item.name}</h4>
+                        </div>
+                        <div class="actions">
+                            <button id="btn-tester-${item.id}" class="tester-btn" onclick="addTester('${item.name}', '${item.id}')">🎁 Tester</button>
+                            <input type="number" id="qty-${item.id}" class="qty-input" value="0" min="0">
+                            <button class="add-btn" onclick="addToCart('${item.name}', '${item.id}')">Προσθήκη</button>
+                        </div>
+                    </div>`;
+            });
+        }
+    }
+
+    function addToCart(name, id, isTester = false) {
+        let qtyToAdd = 1;
+        if (!isTester && id) {
+            qtyToAdd = parseInt(document.getElementById(`qty-${id}`).value) || 0;
+            if (qtyToAdd <= 0) { alert("Επιλέξτε ποσότητα!"); return; }
+        }
+        const itemName = isTester ? `[TESTER] ${name}` : name;
+        const existing = cart.find(item => item.name === itemName);
+        if (existing) { existing.qty += qtyToAdd; } else { cart.push({ name: itemName, qty: qtyToAdd, isTester }); }
+        updateCart();
+    }
+
+    function addTester(name, id) { addToCart(name, id, true); }
+    function removeFromCart(name) { cart = cart.filter(i => i.name !== name); updateCart(); }
+
+    function updateCart() {
+        const cartContainer = document.getElementById("cart-items");
+        cartContainer.innerHTML = "";
+        let totalQty = 0;
+        
+        if (cart.length === 0) { 
+            cartContainer.innerHTML = '<p style="color:#aaa; font-style:italic;">Δεν έχουν επιλεγεί προϊόντα.</p>'; 
+            document.getElementById("total-qty-display").innerText = "0 τεμ.";
+            return;
+        } else {
+            cart.forEach(item => {
+                totalQty += item.qty;
+                cartContainer.innerHTML += `
+                    <div style="display:flex; justify-content:space-between; align-items:center; font-size:13px; margin-bottom:8px; border-bottom:1px solid #f0f0f0; padding-bottom:5px;">
+                        <div style="flex:2;"><b>${item.qty}x</b> ${item.name}</div>
+                        <button onclick="removeFromCart('${item.name}')" style="background:none; border:none; color:red; cursor:pointer; font-weight:bold; margin-left:10px;">✕</button>
+                    </div>`;
+            });
+        }
+
+        document.getElementById("total-qty-display").innerText = totalQty + " τεμ.";
+
+        inventory.forEach(item => {
+            const btn = document.getElementById(`btn-tester-${item.id}`);
+            if (btn) {
+                const hasT = cart.some(c => c.name === `[TESTER] ${item.name}`);
+                btn.innerHTML = hasT ? "✅ Tester" : "🎁 Tester";
+                btn.style.backgroundColor = hasT ? "#27ae60" : "var(--btn-tester)";
+            }
+        });
+    }
+
+    function sendReport() {
+        if (cart.length === 0) { alert("Παρακαλώ επιλέξτε τα προϊόντα που πουλήθηκαν/χρειάζονται αναπλήρωση!"); return; }
+        if (!currentUser) { alert("Σφάλμα σύνδεσης!"); return; }
+
+        let workDaysText = "";
+        const dayRows = document.querySelectorAll(".work-day-row");
+        if (dayRows.length === 0) { alert("Παρακαλώ προσθέστε τουλάχιστον μία Ημέρα Εργασίας!"); return; }
+
+        let validDays = 0;
+        dayRows.forEach(row => {
+            const dateVal = row.querySelector('input[type="date"]').value;
+            const startVal = row.querySelector('select:nth-of-type(1)').value;
+            const endVal = row.querySelector('select:nth-of-type(2)').value;
+
+            if (dateVal && startVal && endVal) {
+                const d = new Date(dateVal);
+                const daysGreek = ["Κυριακή", "Δευτέρα", "Τρίτη", "Τετάρτη", "Πέμπτη", "Παρασκευή", "Σάββατο"];
+                const dayName = daysGreek[d.getDay()];
+                const formattedDate = dateVal.split('-').reverse().join('/');
+                
+                workDaysText += `• ${dayName} ${formattedDate}: ${startVal} έως ${endVal}\n`;
+                validDays++;
+            }
+        });
+
+        if (validDays === 0) { alert("Παρακαλώ συμπληρώστε σωστά την Ημερομηνία και τις Ώρες Εργασίας!"); return; }
+
+        const reportNumber = getNextReportNumber();
+        const inputNotes = document.getElementById("order-notes").value.trim() || "Δεν υπάρχουν σημειώσεις.";
+
+        const orderBtn = document.getElementById("submit-order-btn");
+        orderBtn.disabled = true;
+        orderBtn.innerText = "ΑΠΟΣΤΟΛΗ ΑΝΑΦΟΡΑΣ...";
+
+        let cleanCartItems = "";
+        let totalQtySum = 0;
+        cart.forEach(item => {
+            cleanCartItems += `${item.qty}x ${item.name}\n`;
+            totalQtySum += item.qty;
+        });
+
+        // ΑΥΤΟΜΑΤΗ ΣΥΜΠΛΗΡΩΣΗ ΤΩΝ ΣΤΟΙΧΕΙΩΝ ΤΗΣ ΠΡΟΩΘΗΤΡΙΑΣ ΣΤΟ EMAIL
+        const combinedNotes = `=======================================\n  JO. FOUR / HONDOS CENTER PROMOTERS PORTAL\n  ΑΝΑΦΟΡΑ ΠΩΛΗΤΡΙΑΣ & RESTOCK #${reportNumber}\n=======================================\n\n👤 ΣΤΟΙΧΕΙΑ ΠΡΟΩΘΗΤΡΙΑΣ:\n------------------------\nΟΝΟΜΑΤΕΠΩΝΥΜΟ : ${currentUser.name}\nΑΦΜ           : ${currentUser.afm}\nΤΗΛΕΦΩΝΟ      : ${currentUser.phone}\nEMAIL         : ${currentUser.email}\nΚΑΤΑΣΤΗΜΑ     : ${currentUser.store}\n\n📅 ΔΗΛΩΣΗ ΕΡΓΟΣΗΜΟΥ (ΗΜΕΡΕΣ & ΩΡΕΣ):\n------------------------------------\n${workDaysText}\n📝 ΠΑΡΑΤΗΡΗΣΕΙΣ STAND:\n----------------------\n${inputNotes}`;
+
+        const multipleRecipients = `${currentUser.email}, cosmeticskaterina@gmail.com, info@jofourgreece.gr`;
+
+        const templateParams = {
+            customer_email: multipleRecipients, 
+            order_notes: combinedNotes, 
+            html_cart_items: cleanCartItems, 
+            products_subtotal: totalQtySum + " τεμάχια",
+            shipping_cost: "0 τεμ.",
+            net_total: totalQtySum + " τεμάχια",
+            vat_total: "-",
+            "grand-total": totalQtySum + " τεμάχια"
+        };
+
+        emailjs.send(EMAILJS_CONFIG.serviceID, EMAILJS_CONFIG.templateID, templateParams)
+            .then(function(response) {
+                alert("Η αναφορά #" + reportNumber + " στάλθηκε με επιτυχία!");
+                
+                incrementReportNumber(); 
+                updateReportDisplay();
+
+                cart = [];
+                document.getElementById("work-days-container").innerHTML = "";
+                document.getElementById("order-notes").value = "";
+                
+                addWorkDay(); 
+                updateCart();
+                orderBtn.disabled = false;
+                orderBtn.innerText = "Αποστολη Αναφορας & Παραγγελιας";
+            }, function(error) {
+                alert("Αποτυχία αποστολής: " + JSON.stringify(error));
+                orderBtn.disabled = false;
+                orderBtn.innerText = "Αποστολη Αναφορας & Παραγγελιας";
+            });
+    }
+
+    // Αρχικοποίηση
+    checkSavedLogin();
+    updateReportDisplay();
+    addWorkDay();
+    renderProducts();
+</script>
+</body>
+</html>
