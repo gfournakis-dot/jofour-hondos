@@ -154,10 +154,12 @@
                     <span>Συνολικά Τεμάχια Stand:</span> 
                     <span id="total-qty-display">0 τεμ.</span>
                 </div>
+                <!-- ΝΕΟ ΔΙΟΡΘΩΜΕΝΟ FOOTER -->
                 <div class="thank-you-text" style="margin-top:10px; border-top:1px dashed #ccc; padding-top:8px;">
-                    <strong>JO. FOUR GREECE - FOURNAKIS GROUP</strong><br>
-                    📱 Υπεύθυνη: <strong>6933292978</strong> (Κατερίνα)<br>
-                    📞 Γραφείο: <strong>2121212560</strong>
+                    Με εκτίμηση,<br>
+                    <span id="footer-promoter-name" style="font-weight:bold; color:var(--accent); text-transform:uppercase;"></span><br>
+                    <strong>For Jo. Four Greece | by Fournakis Group</strong><br>
+                    📱 <strong>6933 29 2978</strong> | 📞 <strong>212 121 2560</strong>
                 </div>
             </div>
             <button id="submit-order-btn" class="checkout-btn" onclick="sendReport()">Αποστολη Αναφορας & Παραγγελιας</button>
@@ -227,6 +229,8 @@
             🆔 ΑΦΜ: <b>${currentUser.afm}</b> | 📞 <b>${currentUser.phone}</b><br>
             🏢 <b>${currentUser.store}</b>
         `;
+
+        document.getElementById("footer-promoter-name").innerText = currentUser.name;
     }
 
     function getNextReportNumber() {
@@ -498,7 +502,6 @@
 
         const multipleRecipients = `${currentUser.email}, cosmeticskaterina@gmail.com, info@jofourgreece.gr`;
         
-        // Ο ΤΙΤΛΟΣ ΠΟΥ ΘΑ ΕΜΦΑΝΙΖΕΤΑΙ ΣΤΑ ΕΙΣΕΡΧΟΜΕΝΑ ΣΟΥ
         const dynamicSubjectTitle = `Νέα Παραγγελία από ${currentUser.name.toUpperCase()} - ${currentUser.store} (#${reportNumber})`;
 
         const templateParams = {
