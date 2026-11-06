@@ -250,56 +250,65 @@
 
     const inventory = [
         /* ΑΡΩΜΑΤΑ 50ml (ANGEL) */
-        { cat: "ΑΡΩΜΑΤΑ (50ml) - ANGEL", id: "a1", name: "Angel No 000 Perfume", img: "images/angel000.jpg" },
-        { cat: "ΑΡΩΜΑΤΑ (50ml) - ANGEL", id: "a2", name: "Angel No 222 Perfume", img: "images/angel222.jpg" },
-        { cat: "ΑΡΩΜΑΤΑ (50ml) - ANGEL", id: "a3", name: "Angel No 333 Perfume", img: "images/angel333.jpg" },
-        { cat: "ΑΡΩΜΑΤΑ (50ml) - ANGEL", id: "a4", name: "Angel No 555 Perfume", img: "images/angel555.jpg" },
-        { cat: "ΑΡΩΜΑΤΑ (50ml) - ANGEL", id: "a5", name: "Angel No 777 Perfume", img: "images/angel777.jpg" },
-        { cat: "ΑΡΩΜΑΤΑ (50ml) - ANGEL", id: "a6", name: "Angel No 888 Perfume", img: "images/angel888.jpg" },
+        { cat: "ΑΡΩΜΑΤΑ (50ml) - ANGEL", id: "a1", name: "Angel No 000 Perfume", img: "images/angel000.jpg", allowTester: true },
+        { cat: "ΑΡΩΜΑΤΑ (50ml) - ANGEL", id: "a2", name: "Angel No 222 Perfume", img: "images/angel222.jpg", allowTester: true },
+        { cat: "ΑΡΩΜΑΤΑ (50ml) - ANGEL", id: "a3", name: "Angel No 333 Perfume", img: "images/angel333.jpg", allowTester: true },
+        { cat: "ΑΡΩΜΑΤΑ (50ml) - ANGEL", id: "a4", name: "Angel No 555 Perfume", img: "images/angel555.jpg", allowTester: true },
+        { cat: "ΑΡΩΜΑΤΑ (50ml) - ANGEL", id: "a5", name: "Angel No 777 Perfume", img: "images/angel777.jpg", allowTester: true },
+        { cat: "ΑΡΩΜΑΤΑ (50ml) - ANGEL", id: "a6", name: "Angel No 888 Perfume", img: "images/angel888.jpg", allowTester: true },
 
         /* ΑΡΩΜΑΤΑ 50ml (ESSENTIAL) */
-        { cat: "ΑΡΩΜΑΤΑ (50ml) - ESSENTIAL", id: "e1", name: "Sweet Diva Perfume", img: "images/diva.jpg" },
-        { cat: "ΑΡΩΜΑΤΑ (50ml) - ESSENTIAL", id: "e2", name: "White Luxe Perfume", img: "images/white_luxe.jpg" },
-        { cat: "ΑΡΩΜΑΤΑ (50ml) - ESSENTIAL", id: "e3", name: "Golden Aura Perfume", img: "images/golden_aura.jpg" },
-        { cat: "ΑΡΩΜΑΤΑ (50ml) - ESSENTIAL", id: "e4", name: "Gelato Dream Perfume", img: "images/gelato.jpg" },
-        { cat: "ΑΡΩΜΑΤΑ (50ml) - ESSENTIAL", id: "e5", name: "Crystal Breeze Perfume", img: "images/crystal.jpg" },
-        { cat: "ΑΡΩΜΑΤΑ (50ml) - ESSENTIAL", id: "e6", name: "Brazilian Sol Perfume", img: "images/brazilian.jpg" },
-        { cat: "ΑΡΩΜΑΤΑ (50ml) - ESSENTIAL", id: "e7", name: "Velvet Cream Perfume", img: "images/velvet.jpg" },
+        { cat: "ΑΡΩΜΑΤΑ (50ml) - ESSENTIAL", id: "e1", name: "Sweet Diva Perfume", img: "images/diva.jpg", allowTester: true },
+        { cat: "ΑΡΩΜΑΤΑ (50ml) - ESSENTIAL", id: "e2", name: "White Luxe Perfume", img: "images/white_luxe.jpg", allowTester: true },
+        { cat: "ΑΡΩΜΑΤΑ (50ml) - ESSENTIAL", id: "e3", name: "Golden Aura Perfume", img: "images/golden_aura.jpg", allowTester: true },
+        { cat: "ΑΡΩΜΑΤΑ (50ml) - ESSENTIAL", id: "e4", name: "Gelato Dream Perfume", img: "images/gelato.jpg", allowTester: true },
+        { cat: "ΑΡΩΜΑΤΑ (50ml) - ESSENTIAL", id: "e5", name: "Crystal Breeze Perfume", img: "images/crystal.jpg", allowTester: true },
+        { cat: "ΑΡΩΜΑΤΑ (50ml) - ESSENTIAL", id: "e6", name: "Brazilian Sol Perfume", img: "images/brazilian.jpg", allowTester: true },
+        { cat: "ΑΡΩΜΑΤΑ (50ml) - ESSENTIAL", id: "e7", name: "Velvet Cream Perfume", img: "images/velvet.jpg", allowTester: true },
 
         /* ΑΝΔΡΙΚΑ ΑΡΩΜΑΤΑ */
-        { cat: "ΑΝΔΡΙΚΑ ΑΡΩΜΑΤΑ", id: "m1", name: "Ocean Force Perfume", img: "images/ocean_force.jpg" },
-        { cat: "ΑΝΔΡΙΚΑ ΑΡΩΜΑΤΑ", id: "m2", name: "Dark Horizon Perfume", img: "images/dark_horizon.jpg" },
-        { cat: "ΑΝΔΡΙΚΑ ΑΡΩΜΑΤΑ", id: "m3", name: "Amber Royal Perfume", img: "images/amber_royal.jpg" },
+        { cat: "ΑΝΔΡΙΚΑ ΑΡΩΜΑΤΑ", id: "m1", name: "Ocean Force Perfume", img: "images/ocean_force.jpg", allowTester: true },
+        { cat: "ΑΝΔΡΙΚΑ ΑΡΩΜΑΤΑ", id: "m2", name: "Dark Horizon Perfume", img: "images/dark_horizon.jpg", allowTester: true },
+        { cat: "ΑΝΔΡΙΚΑ ΑΡΩΜΑΤΑ", id: "m3", name: "Amber Royal Perfume", img: "images/amber_royal.jpg", allowTester: true },
 
         /* BODY LOTIONS (250ml) */
-        { cat: "BODY LOTIONS (250ml)", id: "l1", name: "Caramel Pop Lotion", img: "images/CARAMEL_POP.jpg" },
-        { cat: "BODY LOTIONS (250ml)", id: "l2", name: "Juicy Nectar Lotion", img: "images/JUICY_NECTAR.jpg" },
-        { cat: "BODY LOTIONS (250ml)", id: "l3", name: "Rose Delight Lotion", img: "images/ROSE_DELIGHT.jpg" },
-        { cat: "BODY LOTIONS (250ml)", id: "l4", name: "Sweet Jasmine Lotion", img: "images/SWEET_JASMINE.jpg" },
-        { cat: "BODY LOTIONS (250ml)", id: "l5", name: "Velvet Cream Lotion", img: "images/VELVET_CREAM.jpg" },
-        { cat: "BODY LOTIONS (250ml)", id: "l6", name: "White Cashmere Lotion", img: "images/WHITE_CASHMERE.jpg" },
-        { cat: "BODY LOTIONS (250ml)", id: "l7", name: "Angel No 000 Lotion", img: "images/lotion000.jpg" },
-        { cat: "BODY LOTIONS (250ml)", id: "l8", name: "Angel No 333 Lotion", img: "images/lotion333.jpg" },
-        { cat: "BODY LOTIONS (250ml)", id: "l9", name: "Angel No 777 Lotion", img: "images/lotion777.jpg" },
+        { cat: "BODY LOTIONS (250ml)", id: "l1", name: "Caramel Pop Lotion", img: "images/CARAMEL_POP.jpg", allowTester: true },
+        { cat: "BODY LOTIONS (250ml)", id: "l2", name: "Juicy Nectar Lotion", img: "images/JUICY_NECTAR.jpg", allowTester: true },
+        { cat: "BODY LOTIONS (250ml)", id: "l3", name: "Rose Delight Lotion", img: "images/ROSE_DELIGHT.jpg", allowTester: true },
+        { cat: "BODY LOTIONS (250ml)", id: "l4", name: "Sweet Jasmine Lotion", img: "images/SWEET_JASMINE.jpg", allowTester: true },
+        { cat: "BODY LOTIONS (250ml)", id: "l5", name: "Velvet Cream Lotion", img: "images/VELVET_CREAM.jpg", allowTester: true },
+        { cat: "BODY LOTIONS (250ml)", id: "l6", name: "White Cashmere Lotion", img: "images/WHITE_CASHMERE.jpg", allowTester: true },
+        { cat: "BODY LOTIONS (250ml)", id: "l7", name: "Angel No 000 Lotion", img: "images/lotion000.jpg", allowTester: true },
+        { cat: "BODY LOTIONS (250ml)", id: "l8", name: "Angel No 333 Lotion", img: "images/lotion333.jpg", allowTester: true },
+        { cat: "BODY LOTIONS (250ml)", id: "l9", name: "Angel No 777 Lotion", img: "images/lotion777.jpg", allowTester: true },
 
         /* HAIR & BODY MISTS (200ml) */
-        { cat: "HAIR & BODY MISTS", id: "mist1", name: "Brazilian Sol Mist", img: "images/mist_brazilian.png" },
-        { cat: "HAIR & BODY MISTS", id: "mist2", name: "Crystal Breeze Mist", img: "images/mist_crystal.jpg" },
-        { cat: "HAIR & BODY MISTS", id: "mist3", name: "Gelato Dream Mist", img: "images/mist_gelato.jpg" },
-        { cat: "HAIR & BODY MISTS", id: "mist4", name: "Golden Aura Mist", img: "images/mist_golden.jpg" },
-        { cat: "HAIR & BODY MISTS", id: "mist5", name: "Ocean Force Mist", img: "images/mist_ocean.jpg" },
-        { cat: "HAIR & BODY MISTS", id: "mist6", name: "Sweet Diva Mist", img: "images/mist_diva.jpg" },
-        { cat: "HAIR & BODY MISTS", id: "mist7", name: "Vanilla 222 Mist", img: "images/mist_vanilla.jpg" },
-        { cat: "HAIR & BODY MISTS", id: "mist8", name: "Velvet Cream Mist", img: "images/mist_velvet.jpg" },
-        { cat: "HAIR & BODY MISTS", id: "mist9", name: "White Luxe Mist", img: "images/mist_white.jpg" },
+        { cat: "HAIR & BODY MISTS", id: "mist1", name: "Brazilian Sol Mist", img: "images/mist_brazilian.png", allowTester: true },
+        { cat: "HAIR & BODY MISTS", id: "mist2", name: "Crystal Breeze Mist", img: "images/mist_crystal.jpg", allowTester: true },
+        { cat: "HAIR & BODY MISTS", id: "mist3", name: "Gelato Dream Mist", img: "images/mist_gelato.jpg", allowTester: true },
+        { cat: "HAIR & BODY MISTS", id: "mist4", name: "Golden Aura Mist", img: "images/mist_golden.jpg", allowTester: true },
+        { cat: "HAIR & BODY MISTS", id: "mist5", name: "Ocean Force Mist", img: "images/mist_ocean.jpg", allowTester: true },
+        { cat: "HAIR & BODY MISTS", id: "mist6", name: "Sweet Diva Mist", img: "images/mist_diva.jpg", allowTester: true },
+        { cat: "HAIR & BODY MISTS", id: "mist7", name: "Vanilla 222 Mist", img: "images/mist_vanilla.jpg", allowTester: true },
+        { cat: "HAIR & BODY MISTS", id: "mist8", name: "Velvet Cream Mist", img: "images/mist_velvet.jpg", allowTester: true },
+        { cat: "HAIR & BODY MISTS", id: "mist9", name: "White Luxe Mist", img: "images/mist_white.jpg", allowTester: true },
 
         /* GIFT SETS */
-        { cat: "GIFT SETS (ΣΕΤ ΔΩΡΩΝ)", id: "gs1", name: "Set - Ocean Force", img: "images/set_ocean.jpg" },
-        { cat: "GIFT SETS (ΣΕΤ ΔΩΡΩΝ)", id: "gs2", name: "Set - Sweet Diva", img: "images/set_diva.jpg" },
-        { cat: "GIFT SETS (ΣΕΤ ΔΩΡΩΝ)", id: "gs3", name: "Set - Crystal Breeze", img: "images/set_crystal.jpg" },
-        { cat: "GIFT SETS (ΣΕΤ ΔΩΡΩΝ)", id: "gs4", name: "Set - Gelato Dream", img: "images/set_gelato.jpg" },
-        { cat: "GIFT SETS (ΣΕΤ ΔΩΡΩΝ)", id: "gs5", name: "Set - Golden Aura", img: "images/set_golden.jpg" },
-        { cat: "GIFT SETS (ΣΕΤ ΔΩΡΩΝ)", id: "gs6", name: "Set - Vanilla 222", img: "images/set_vanilla.jpg" }
+        { cat: "GIFT SETS (ΣΕΤ ΔΩΡΩΝ)", id: "gs1", name: "Set - Ocean Force", img: "images/set_ocean.jpg", allowTester: false },
+        { cat: "GIFT SETS (ΣΕΤ ΔΩΡΩΝ)", id: "gs2", name: "Set - Sweet Diva", img: "images/set_diva.jpg", allowTester: false },
+        { cat: "GIFT SETS (ΣΕΤ ΔΩΡΩΝ)", id: "gs3", name: "Set - Crystal Breeze", img: "images/set_crystal.jpg", allowTester: false },
+        { cat: "GIFT SETS (ΣΕΤ ΔΩΡΩΝ)", id: "gs4", name: "Set - Gelato Dream", img: "images/set_gelato.jpg", allowTester: false },
+        { cat: "GIFT SETS (ΣΕΤ ΔΩΡΩΝ)", id: "gs5", name: "Set - Golden Aura", img: "images/set_golden.jpg", allowTester: false },
+        { cat: "GIFT SETS (ΣΕΤ ΔΩΡΩΝ)", id: "gs6", name: "Set - Vanilla 222", img: "images/set_vanilla.jpg", allowTester: false },
+
+        /* XMAS GIFT SETS */
+        { cat: "GIFT SETS (ΣΕΤ ΔΩΡΩΝ)", id: "xmas1", name: "XMAS SET Gelato Dream & Sweet Jasmine", img: "images/SET1 (1).png", allowTester: false },
+        { cat: "GIFT SETS (ΣΕΤ ΔΩΡΩΝ)", id: "xmas2", name: "XMAS SET White Luxe & White Cashmere", img: "images/SET2.png", allowTester: false },
+        { cat: "GIFT SETS (ΣΕΤ ΔΩΡΩΝ)", id: "xmas3", name: "XMAS SET Sweet Diva & Juicy Nectar", img: "images/SET3.png", allowTester: false },
+        { cat: "GIFT SETS (ΣΕΤ ΔΩΡΩΝ)", id: "xmas4", name: "XMAS SET Brazilian Sol & Caramel Pop", img: "images/SET4.png", allowTester: false },
+        { cat: "GIFT SETS (ΣΕΤ ΔΩΡΩΝ)", id: "xmas5", name: "XMAS SET Golden Aura & Rose Delight", img: "images/SET5.png", allowTester: false },
+        { cat: "GIFT SETS (ΣΕΤ ΔΩΡΩΝ)", id: "xmas6", name: "XMAS SET Velvet Cream", img: "images/SET6.png", allowTester: false },
+        { cat: "GIFT SETS (ΣΕΤ ΔΩΡΩΝ)", id: "xmas7", name: "XMAS SET 777", img: "images/XMAS SET 777 .png", allowTester: true }
     ];
 
     let cart = [];
@@ -377,6 +386,10 @@
         for (const [category, items] of Object.entries(grouped)) {
             container.innerHTML += `<h2 class="category-title">${category}</h2>`;
             items.forEach((item) => {
+                const testerButtonHtml = item.allowTester !== false 
+                    ? `<button id="btn-tester-${item.id}" class="tester-btn" onclick="addTester('${item.name}', '${item.id}')">🎁 Tester</button>` 
+                    : '';
+
                 container.innerHTML += `
                     <div class="product-card">
                         <div class="image-container">
@@ -386,7 +399,7 @@
                             <h4>${item.name}</h4>
                         </div>
                         <div class="actions">
-                            <button id="btn-tester-${item.id}" class="tester-btn" onclick="addTester('${item.name}', '${item.id}')">🎁 Tester</button>
+                            ${testerButtonHtml}
                             <input type="number" id="qty-${item.id}" class="qty-input" value="0" min="0">
                             <button class="add-btn" onclick="addToCart('${item.name}', '${item.id}')">Προσθήκη</button>
                         </div>
@@ -433,11 +446,13 @@
         document.getElementById("total-qty-display").innerText = totalQty + " τεμ.";
 
         inventory.forEach(item => {
-            const btn = document.getElementById(`btn-tester-${item.id}`);
-            if (btn) {
-                const hasT = cart.some(c => c.name === `[TESTER] ${item.name}`);
-                btn.innerHTML = hasT ? "✅ Tester" : "🎁 Tester";
-                btn.style.backgroundColor = hasT ? "#27ae60" : "var(--btn-tester)";
+            if (item.allowTester !== false) {
+                const btn = document.getElementById(`btn-tester-${item.id}`);
+                if (btn) {
+                    const hasT = cart.some(c => c.name === `[TESTER] ${item.name}`);
+                    btn.innerHTML = hasT ? "✅ Tester" : "🎁 Tester";
+                    btn.style.backgroundColor = hasT ? "#27ae60" : "var(--btn-tester)";
+                }
             }
         });
     }
@@ -489,7 +504,7 @@
 
         const orderBtn = document.getElementById("submit-order-btn");
         orderBtn.disabled = true;
-        orderBtn.innerText = "ΑΠΟΣТОΛΗ ΑΝΑΦΟΡΑΣ...";
+        orderBtn.innerText = "ΑΠΟΣΤΟΛΗ ΑΝΑΦΟΡΑΣ...";
 
         let cleanCartItems = "";
         let totalQtySum = 0;
